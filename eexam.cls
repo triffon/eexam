@@ -27,7 +27,7 @@
 \lstset{
   inputencoding=utf8,
   basicstyle=\small\ttfamily,
-  keywordstyle=\color{blue!50!black},
+  keywordstyle=\bfseries,
   commentstyle=\color{gray},
   tabsize=4,
   showstringspaces=false,
