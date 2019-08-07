@@ -39,15 +39,7 @@
   keepspaces=true
 }
 
-% форматиране на URLs
-\RequirePackage{url}
-
-% поддръжка на връзки в документа, но да не се извеждат в различен стил
-\RequirePackage{hyperref}
-\hypersetup{hidelinks}
-
-% форматиране на списъци
-\RequirePackage{enumerate}
+% фино форматиране на списъци
 \RequirePackage{enumitem}
 
 % многоредови клетки в таблица
@@ -76,26 +68,14 @@
 \fancyfoot{}
 \renewcommand{\footrulewidth}{0.4pt}
 
-% декларативна графика с TikZ
-% TODO: наистина ли е нужно да се зареди за всички?
+% включване на картинки
+\RequirePackage{graphicx}
 
-\RequirePackage{tikz}
-\usetikzlibrary{shapes,arrows,positioning,calc,positioning,fit}
-\tikzset{
-  block/.style = {draw, fill=white, rectangle, align=center},
-  entry/.style = {draw, fill=black, circle, radius=3em},
-  condition/.style = {draw, fill=white, diamond, align=center,node distance=3cm},
-  fork/.style = {draw, fill=black, circle, inner sep=1pt},
-}
-
-% други пакети (да се провери дали са нужни)
-\RequirePackage[framemethod=tikz]{mdframed}
-\RequirePackage{relsize}
-\RequirePackage{caption}
-\RequirePackage{lastpage}
-\RequirePackage{pbox}
+% форматиране на колони
 \RequirePackage{multicol}
-\RequirePackage{alltt}
+
+% рефериране към номера на последната страница
+\RequirePackage{lastpage}
 
 % текстови стилове
 \newcommand{\code}[1]{\texttt{#1}}
