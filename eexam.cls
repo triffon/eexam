@@ -46,11 +46,7 @@
 \RequirePackage{multirow}
 
 % настройка на отстъпи
-\addtolength{\topmargin}{-1.0in}
-\addtolength{\oddsidemargin}{-1.0in}
-\addtolength{\evensidemargin}{-1.0in}
-\addtolength{\textwidth}{2.0in}
-\addtolength{\textheight}{2.0in}
+\RequirePackage[a4paper, margin=1cm, includeheadfoot]{geometry}
 
 %% настройка на колонтитули
 \RequirePackage{fancyhdr}
@@ -60,7 +56,7 @@
 \fancyhead[C]{%
   \begin{tabular}{cccccc}%
     && \small{Държавен изпит} & \multirow[t]{2}{20ex}{\centering\small{\textbf{\@spec}}} && \\ 
-    \small{\@date}  & \small{СУ-ФМИ} & \small{за ОКС \emph{Бакалавър}} && ф.н. \rule{15ex}{0.4pt}&  \small{лист \thepage/\pageref{LastPage}}%
+    \small{\@date}  & \small{СУ--ФМИ} & \small{за ОКС \emph{Бакалавър}} && ф.н. \rule{15ex}{0.4pt}&  \small{лист \thepage/\pageref{LastPage}}%
   \end{tabular}%
 }
 
