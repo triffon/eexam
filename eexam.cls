@@ -135,7 +135,13 @@
   \end{center}
 }
 
-% задаване на опции
+% страница за чернова
+\newcommand{\eexamdraftpage}{%
+  \newpage
+  \begin{center}
+    \large{\underline{\textbf{Чернова}}}
+  \end{center}
+}
 
 % брояч за задачи
 \newcounter{Problem}
