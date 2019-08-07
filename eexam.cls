@@ -135,12 +135,16 @@
 % брояч за задачи
 \newcounter{Problem}
 
+% задаване на директория за задачите, по подразбиране "problems"
+\def\@problemsdir{problems}
+\newcommand{\problemsdir}[1]{\def\@problemsdir{#1}}
+
 % включване на задача
 \newcommand{\problem}[1]{%
   \newpage
   \stepcounter{Problem}
   \textbf{Задача \theProblem.}
-  \input{#1}
+  \input{\@problemsdir/#1}
 }
 
 % задаване на име на специалност
