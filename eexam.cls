@@ -22,6 +22,11 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 
+% настройка на подфайлове, които могат да се компилират самостоятелно
+% и могат да дефинират собствени локални команди
+\RequirePackage[subpreambles=true]{standalone}
+\RequirePackage{import}
+
 % форматиране на код
 \RequirePackage{listings}
 \lstset{
@@ -144,8 +149,9 @@
   \newpage
   \stepcounter{Problem}
   \textbf{Задача \theProblem.}
-  \input{\@problemsdir/#1}
+  \import{\@problemsdir/}{/#1}
 }
 
 % задаване на име на специалност
+\def\@spec{<специалност>}
 \newcommand{\spec}[1]{\def\@spec{#1}}

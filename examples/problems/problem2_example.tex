@@ -1,0 +1,21 @@
+\documentclass[class=eexam, crop=false]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.misc}
+\tikzset{
+  base/.style={minimum width=12ex, minimum height=2em},
+  roundrect/.style={base,draw,rounded rectangle},
+  rect/.style={base,draw,rectangle}
+}
+
+\begin{document}
+Това е друга примерна задача, която използва пакета TikZ за графика:
+\begin{center}
+  \begin{tikzpicture}
+    \node (start)  at (0,0) [roundrect] {начало};
+    \node (finish) at (6,0) [roundrect] {край};
+    \node (work)   at (3,0) [rect] {работа};
+    \draw [->] (start) -- (work);
+    \draw [->] (work)  -- (finish);
+  \end{tikzpicture}
+\end{center}
+\end{document}
