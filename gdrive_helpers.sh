@@ -2,6 +2,10 @@
 
 GDRIVE=/opt/gdrive
 
+function get_sha256sum() {
+    sha256sum -b "$1" | cut -d' ' -f1
+}
+
 function gdrive_check() {
     if [ ! -x "$GDRIVE" ]
     then
@@ -10,7 +14,7 @@ function gdrive_check() {
     fi
 }
 
-function gdrive_upload_all() {
+function gdrive_upload() {
     # check if gdrive is present
     gdrive_check
 
@@ -51,13 +55,14 @@ function gdrive_upload_all() {
             exit 6
         fi
 
-        # add file and its ID to the index file
+        # add file, its ID, and SHA256 hash to the index file
         echo "Adding $FILE to index with ID=$ID"
-        echo "$FILE,$ID" >> "$GDRIVE_INDEX"
+        HASH=`get_sha256sum "$FILE"`
+        echo "$FILE,$ID,$HASH" >> "$GDRIVE_INDEX"
     done
 }
 
-function gdrive_update_all() {
+function gdrive_update() {
     # check if gdrive is present
     gdrive_check
 
@@ -84,18 +89,31 @@ function gdrive_update_all() {
 
     for FILE in $FILES
     do
-        # try to locate file ID in the index file
-        ID=`grep -e "^$FILE" "$GDRIVE_INDEX" | cut -d, -f2`
+        # try to locate (last) file ID in the index file
+        ID=`grep -e "^$FILE" "$GDRIVE_INDEX" | tail -1 | cut -d, -f2`
         if [ $? -ne 0 ]
         then
             echo "Error locating ID for $FILE in index file"
             exit 4
         fi
-        "$GDRIVE" update "$ID" "$FILE"
-        if [ $? -ne 0 ]
+
+        # get actual and last indexed hash and check if the file has changed
+        SAVED_HASH=`grep -e "^$FILE" "$GDRIVE_INDEX" | tail -1 | cut -d, -f3`
+        HASH=`get_sha256sum "$FILE"`
+        if [ "$SAVED_HASH" = "$HASH" ]
         then
-            echo "An error occurred while updating $FILE"
-            exit 5
+            echo "File $FILE not changed, skipping..."
+        else
+            # the file seems to have changed, update it
+            "$GDRIVE" update "$ID" "$FILE"
+            if [ $? -ne 0 ]
+            then
+                echo "An error occurred while updating $FILE"
+                exit 5
+            fi
+
+            # append new hash to index file
+            echo "$FILE,$ID,$HASH" >> "$GDRIVE_INDEX"
         fi
     done
 }
