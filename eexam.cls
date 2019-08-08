@@ -60,7 +60,7 @@
 % горен колонтитул
 \fancyhead[C]{%
   \begin{tabular}{cccccc}%
-    && \small{Държавен изпит} & \multirow[t]{2}{20ex}{\centering\small{\textbf{\@spec}}} && \\ 
+    && \small{Държавен изпит} & \multirow[t]{2}{20ex}{\centering\small{\textbf{\eexam@spec}}} && \\ 
     \small{\@date}  & \small{СУ--ФМИ} & \small{за ОКС \emph{Бакалавър}} && ф.н. \rule{15ex}{0.4pt}&  \small{лист \thepage/\pageref{LastPage}}%
   \end{tabular}%
 }
@@ -77,6 +77,14 @@
 
 % рефериране към номера на последната страница
 \RequirePackage{lastpage}
+
+% включване на външни файлове, използва се за прихващане на git commit hash
+\RequirePackage{catchfile}
+\newcommand{\eexam@gitmaster}{.git/refs/heads/master}
+\IfFileExists{\eexam@gitmaster}{\CatchFileDef{\HEAD}{\eexam@gitmaster}{}}{\def\HEAD{<git master not found>}}
+
+% добавяне на метаданни за git commit hash в генерирания PDF
+\pdfinfo{/Author (\HEAD)}
 
 % текстови стилове
 \newcommand{\code}[1]{\texttt{#1}}
@@ -99,7 +107,7 @@
     \Large{\textbf{ДЪРЖАВЕН ИЗПИТ}}
 
     \bigskip
-    \large{ЗА ПОЛУЧАВАНЕ НА ОКС ``БАКАЛАВЪР ПО \MakeUppercase{\@spec}''}
+    \large{ЗА ПОЛУЧАВАНЕ НА ОКС ``БАКАЛАВЪР ПО \MakeUppercase{\eexam@spec}''}
 
     \bigskip
 
@@ -147,17 +155,17 @@
 \newcounter{Problem}
 
 % задаване на директория за задачите, по подразбиране "problems"
-\def\@problemsdir{problems}
-\newcommand{\problemsdir}[1]{\def\@problemsdir{#1}}
+\def\eexam@problemsdir{problems}
+\newcommand{\problemsdir}[1]{\def\eexam@problemsdir{#1}}
 
 % включване на задача
 \newcommand{\problem}[1]{%
   \newpage
   \stepcounter{Problem}
   \textbf{Задача \theProblem.}
-  \import{\@problemsdir/}{/#1}
+  \import{\eexam@problemsdir/}{/#1}
 }
 
 % задаване на име на специалност
-\def\@spec{<специалност>}
-\newcommand{\spec}[1]{\def\@spec{#1}}
+\def\eexam@spec{<специалност>}
+\newcommand{\spec}[1]{\def\eexam@spec{#1}}
