@@ -1,0 +1,20 @@
+# include Makefile containing rules for uploading built files to GDrive
+
+# code borrowed from https://stackoverflow.com/questions/18136918/how-to-get-current-relative-directory-of-your-makefile
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+current_dir := $(patsubst %/,%,$(dir $(mkfile_path)))
+
+# set shell to bash to make use of helper functions
+SHELL := /bin/bash 
+
+GDRIVE_HELPERS := $(current_dir)/gdrive_helpers.sh
+
+gdrive.index:
+ifdef TARGET_FOLDER
+	. $(GDRIVE_HELPERS) && gdrive_upload gdrive.index $(TARGET_FOLDER) out/*.pdf
+else
+	$(error Please set TARGET_FOLDER=<Google Drive ID>)	
+endif
+
+gdrive:	gdrive.index
+	. $(GDRIVE_HELPERS) && gdrive_update gdrive.index out/*.pdf
