@@ -33,4 +33,35 @@ pdflatex problem1_example.tex
 pdflatex problem2_example.tex
 ```
 
-Забележете, че всяка от задачите може да използва собствен преамбюл, който се включва в основния документ при компилация на цялата тема.
+Всяка от задачите може да използва собствен преамбюл, който се включва в основния документ при компилация на цялата тема.
+
+Компилираните теми и задачи могат да се качват в Google Drive с помощта на функциите в `gdrive_helpers.sh` или правилата в `Makefile.gdrive`. Поддържат се две действия: upload и update. При upload се качва първоначален вариант на PDF файловете с темите или задачите в зададена папка в Google Drive и техните ID-та се записват в индекс файл (например `gdrive.index`). При update се обновяват файловете с темите и задачите, които са променени съгласно ID-тата и hash-овете, записани в индексния файл.
+
+За първоначално качване:
+
+```shell
+cd examples
+. ../gdrive_helpers.sh
+gdrive_upload gdrive.index <target-folder-ID> out/example.pdf
+```
+
+или с `make`:
+
+```shell
+cd examples
+make gdrive.index TARGET_FOLDER=<target-folder-ID>
+```
+
+За последващо обновяване:
+```shell
+cd examples
+. ../gdrive_helpers.sh
+gdrive_update gdrive.index out/example.pdf
+```
+
+или с `make`:
+
+```shell
+cd examples
+make gdrive
+```

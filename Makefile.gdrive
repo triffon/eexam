@@ -9,12 +9,14 @@ SHELL := /bin/bash
 
 GDRIVE_HELPERS := $(current_dir)/gdrive_helpers.sh
 
+OUTDIR := out
+
 gdrive.index:
 ifdef TARGET_FOLDER
-	. $(GDRIVE_HELPERS) && gdrive_upload gdrive.index $(TARGET_FOLDER) out/*.pdf
+	. $(GDRIVE_HELPERS) && gdrive_upload gdrive.index $(TARGET_FOLDER) $(OUTDIR)/*.pdf
 else
 	$(error Please set TARGET_FOLDER=<Google Drive ID>)	
 endif
 
 gdrive:	gdrive.index
-	. $(GDRIVE_HELPERS) && gdrive_update gdrive.index out/*.pdf
+	. $(GDRIVE_HELPERS) && gdrive_update gdrive.index $(OUTDIR)/*.pdf
