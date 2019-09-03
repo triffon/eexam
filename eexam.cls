@@ -89,6 +89,9 @@
 % текстови стилове
 \newcommand{\code}[1]{\texttt{#1}}
 
+% команда за оставяне на поле за попълване
+\newcommand{\plh}[1]{\rule{#1}{1pt}}
+
 % заглавна страница
 \newcommand{\eexamtitlepage}{%
   \newpage
