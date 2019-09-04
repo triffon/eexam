@@ -54,7 +54,7 @@
 \RequirePackage{multirow}
 
 % настройка на отстъпи
-\RequirePackage[a4paper, margin=1cm, headheight=1.1cm, headsep=0.25cm, includeheadfoot]{geometry}
+\RequirePackage[a4paper, margin=1cm, headheight=1.1cm, headsep=0.4cm, footskip=0.4cm, includeheadfoot]{geometry}
 
 %% настройка на колонтитули
 \RequirePackage{fancyhdr}
