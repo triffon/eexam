@@ -18,6 +18,9 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T2A]{fontenc}
 \RequirePackage[bulgarian]{babel}
+\RequirePackage{libertine}
+\RequirePackage{libertinust1math}
+\RequirePackage{nimbusmononarrow}
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
@@ -59,8 +62,8 @@
 
 % горен колонтитул
 \fancyhead[C]{%
-  \begin{tabular}{cccccc}%
-    && \small{Държавен изпит} & \multirow[t]{2}{20ex}{\centering\small{\textbf{\eexam@spec}}} && \\ 
+  \begin{tabular}{*{5}{c@{\hspace{1.8em}}}c}%
+    && \small{Държавен изпит} & \multirow[t]{2}{20ex}{\centering\small{\textbf{\eexam@spec}}} && \\
     \small{\@date}  & \small{СУ--ФМИ} & \small{за ОКС \emph{Бакалавър}} && ф.н. \rule{15ex}{0.4pt}&  \small{лист \thepage/\pageref{LastPage}}%
   \end{tabular}%
 }
@@ -95,38 +98,21 @@
 % заглавна страница
 \newcommand{\eexamtitlepage}{%
   \newpage
-  \noindent\parbox[c][4cm]{19cm}{
-    \begin{center}
-      \begin{tabular}{l c c}
-        \noindent\parbox[b]{7.8cm}{\large{СОФИЙСКИ УНИВЕРСИТЕТ \\ ``СВ. КЛИМЕНТ ОХРИДСКИ''}} &
-                                                                                               \includegraphics[width=1.5cm]{images/su_logo.jpg} &
-                                                                                                                                                   \noindent\parbox[b]{7.8cm}{\centering \large{ФАКУЛТЕТ ПО МАТЕМАТИКА \\ И ИНФОРМАТИКА}}
-      \end{tabular}        
-    \end{center}
-  }
-
   \begin{center}
-    
-    \Large{\textbf{ДЪРЖАВЕН ИЗПИТ}}
+    \large
+    \begin{tabular}{*{2}{c@{\hspace{.05\textwidth}}}c}
+      \parbox[b]{.4\textwidth}{\centering СОФИЙСКИ УНИВЕРСИТЕТ \\ ``СВ. КЛИМЕНТ ОХРИДСКИ''}
+      & \includegraphics[width=1.5cm]{images/su_logo.jpg}
+      & \parbox[b]{.4\textwidth}{\centering ФАКУЛТЕТ ПО МАТЕМАТИКА \\ И ИНФОРМАТИКА}
+    \end{tabular}
 
-    \bigskip
-    \large{ЗА ПОЛУЧАВАНЕ НА ОКС ``БАКАЛАВЪР ПО \MakeUppercase{\eexam@spec}''}
-
-    \bigskip
-
-    \bigskip
-
-    \large{ЧАСТ I (ПРАКТИЧЕСКИ ЗАДАЧИ)}
+    \vspace{10ex}
+    \Large\textbf{ДЪРЖАВЕН ИЗПИТ}\\[2ex]
+    \largeЗА ПОЛУЧАВАНЕ НА ОКС ``БАКАЛАВЪР ПО \MakeUppercase{\eexam@spec}''\\[4ex]
+    ЧАСТ I (ПРАКТИЧЕСКИ ЗАДАЧИ)
   \end{center}
 
-  \bigskip
-
-  \bigskip
-
-  \bigskip
-
-  \bigskip
-
+  \vspace{10ex}
   Драги абсолвенти:
   \begin{itemize}
   \item Попълнете факултетния си номер в горния десен ъгъл на всички листове.
