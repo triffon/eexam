@@ -54,7 +54,7 @@
 \RequirePackage{multirow}
 
 % настройка на отстъпи
-\RequirePackage[a4paper, margin=1cm, includeheadfoot]{geometry}
+\RequirePackage[a4paper, margin=1cm, headheight=1.1cm, headsep=0.25cm, includeheadfoot]{geometry}
 
 %% настройка на колонтитули
 \RequirePackage{fancyhdr}
@@ -62,7 +62,7 @@
 
 % горен колонтитул
 \fancyhead[C]{%
-  \begin{tabular}{*{5}{c@{\hspace{1.8em}}}c}%
+  \begin{tabular}{*{5}{c@{\hspace{1.5em}}}c}%
     && \small{Държавен изпит} & \multirow[t]{2}{20ex}{\centering\small{\textbf{\eexam@spec}}} && \\
     \small{\@date}  & \small{СУ--ФМИ} & \small{за ОКС \emph{Бакалавър}} && ф.н. \rule{15ex}{0.4pt}&  \small{лист \thepage/\pageref{LastPage}}%
   \end{tabular}%
@@ -100,10 +100,11 @@
   \newpage
   \begin{center}
     \large
-    \begin{tabular}{*{2}{c@{\hspace{.05\textwidth}}}c}
-      \parbox[b]{.4\textwidth}{\centering СОФИЙСКИ УНИВЕРСИТЕТ \\ ``СВ. КЛИМЕНТ ОХРИДСКИ''}
+    \vspace*{1cm}
+    \begin{tabular}{*{2}{c@{\hspace{1.5cm}}}c}
+      \parbox[b]{7cm}{\centering СОФИЙСКИ УНИВЕРСИТЕТ \\ ``СВ. КЛИМЕНТ ОХРИДСКИ''}
       & \includegraphics[width=1.5cm]{images/su_logo.jpg}
-      & \parbox[b]{.4\textwidth}{\centering ФАКУЛТЕТ ПО МАТЕМАТИКА \\ И ИНФОРМАТИКА}
+      & \parbox[b]{7cm}{\centering ФАКУЛТЕТ ПО МАТЕМАТИКА \\ И ИНФОРМАТИКА}
     \end{tabular}
 
     \vspace{10ex}
