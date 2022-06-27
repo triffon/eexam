@@ -58,7 +58,7 @@ function gdrive_upload() {
         # add file, its ID, and SHA256 hash to the index file
         echo "Adding $FILE to index with ID=$ID"
         HASH=`get_sha256sum "$FILE"`
-        echo "$FILE,$ID,$HASH" >> "$GDRIVE_INDEX"
+        echo "$FILE@$ID@$HASH" >> "$GDRIVE_INDEX"
     done
 }
 
@@ -90,7 +90,7 @@ function gdrive_update() {
     for FILE in $FILES
     do
         # try to locate (last) file ID in the index file
-        ID=`grep -e "^$FILE" "$GDRIVE_INDEX" | tail -1 | cut -d, -f2`
+        ID=`grep -F "$FILE;" "$GDRIVE_INDEX" | tail -1 | cut -d';' -f2`
         if [ $? -ne 0 ]
         then
             echo "Error locating ID for $FILE in index file"
@@ -98,7 +98,7 @@ function gdrive_update() {
         fi
 
         # get actual and last indexed hash and check if the file has changed
-        SAVED_HASH=`grep -e "^$FILE" "$GDRIVE_INDEX" | tail -1 | cut -d, -f3`
+        SAVED_HASH=`grep -F "$FILE;" "$GDRIVE_INDEX" | tail -1 | cut -d';' -f3`
         HASH=`get_sha256sum "$FILE"`
         if [ "$SAVED_HASH" = "$HASH" ]
         then
@@ -113,7 +113,7 @@ function gdrive_update() {
             fi
 
             # append new hash to index file
-            echo "$FILE,$ID,$HASH" >> "$GDRIVE_INDEX"
+            echo "$FILE;$ID;$HASH" >> "$GDRIVE_INDEX"
         fi
     done
 }
