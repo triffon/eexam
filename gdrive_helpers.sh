@@ -58,7 +58,7 @@ function gdrive_upload() {
         # add file, its ID, and SHA256 hash to the index file
         echo "Adding $FILE to index with ID=$ID"
         HASH=`get_sha256sum "$FILE"`
-        echo "$FILE@$ID@$HASH" >> "$GDRIVE_INDEX"
+        echo "$FILE;$ID;$HASH" >> "$GDRIVE_INDEX"
     done
 }
 
