@@ -159,3 +159,8 @@
 % задаване на име на специалност
 \def\eexam@spec{<специалност>}
 \newcommand{\spec}[1]{\def\eexam@spec{#1}}
+
+% по подразбиране се задава режим на печатане без решения, освен ако не е отменен от команден ред
+\ifx\fmisolutions\undefined
+\def\fmiprint{}
+\fi
