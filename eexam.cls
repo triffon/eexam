@@ -160,7 +160,13 @@
 \def\eexam@spec{<специалност>}
 \newcommand{\spec}[1]{\def\eexam@spec{#1}}
 
+% в standalone режим се извеждат решения
+\ifstandalone
+\def\fmisolutions{}
+\fi
+
 % по подразбиране се задава режим на печатане без решения, освен ако не е отменен от команден ред
 \ifx\fmisolutions\undefined
 \def\fmiprint{}
 \fi
+
