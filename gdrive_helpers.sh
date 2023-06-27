@@ -42,7 +42,7 @@ function gdrive_upload() {
     do
         # upload file and fetch ID
         echo "Uploading $FILE..."
-        ID=`"$GDRIVE" upload -p "$TARGET_FOLDER" "$FILE" | grep "Uploaded" | cut -d' ' -f2`
+        ID=`"$GDRIVE" files upload --parent "$TARGET_FOLDER" "$FILE" | grep "Id:" | cut -d' ' -f2`
         if [ $? -ne 0 ]
         then
             echo "An error occurred while uploading $FILE"
@@ -105,7 +105,7 @@ function gdrive_update() {
             echo "File $FILE not changed, skipping..."
         else
             # the file seems to have changed, update it
-            "$GDRIVE" update "$ID" "$FILE"
+            "$GDRIVE" files update "$ID" "$FILE"
             if [ $? -ne 0 ]
             then
                 echo "An error occurred while updating $FILE"
