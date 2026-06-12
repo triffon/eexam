@@ -46,6 +46,8 @@
   escapechar=@,
   keepspaces=true
 }
+\RequirePackage{lstautogobble}
+\RequirePackage{xcolor} % Otherwise comments in code cause problems
 
 % фино форматиране на списъци
 \RequirePackage{enumitem}
