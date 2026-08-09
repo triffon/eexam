@@ -32,7 +32,10 @@
 
 % форматиране на код
 \RequirePackage{listings}
-\lstset{
+\RequirePackage{lstautogobble}
+\RequirePackage{xcolor} % Otherwise comments in code cause problems
+
+\lstdefinestyle{eexam-default}{
   inputencoding=utf8,
   basicstyle=\small\ttfamily,
   keywordstyle=\bfseries,
@@ -44,10 +47,10 @@
   extendedchars=false,
   texcl=true,
   escapechar=@,
-  keepspaces=true
+  keepspaces=true,
+  autogobble=true,
 }
-\RequirePackage{lstautogobble}
-\RequirePackage{xcolor} % Otherwise comments in code cause problems
+\lstset{style=eexam-default}
 
 % фино форматиране на списъци
 \RequirePackage{enumitem}
